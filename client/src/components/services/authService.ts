@@ -4,19 +4,19 @@ import { LoginFormData, AuthResponse, ChangePasswordFormData, Admin } from '../t
 export const authService = {
   // Admin login
   async login(credentials: LoginFormData): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>('/auth/login', credentials);
+    const response = await apiClient.post<AuthResponse>('/api/auth/login', credentials);
     return response.data!;
   },
 
   // Get current admin info
   async getMe(): Promise<Admin> {
-    const response = await apiClient.get<{ admin: Admin }>('/auth/me');
+    const response = await apiClient.get<{ admin: Admin }>('/api/auth/me');
     return response.data!.admin;
   },
 
   // Change password
   async changePassword(data: ChangePasswordFormData): Promise<void> {
-    await apiClient.put('/auth/change-password', {
+    await apiClient.put('/api/auth/change-password', {
       currentPassword: data.currentPassword,
       newPassword: data.newPassword,
     });
@@ -24,16 +24,16 @@ export const authService = {
 
   // Logout
   async logout(): Promise<void> {
-    await apiClient.post('/auth/logout');
+    await apiClient.post('/api/auth/logout');
   },
 
   // Forgot password
   async forgotPassword(email: string): Promise<void> {
-    await apiClient.post('/auth/forgot-password', { email });
+    await apiClient.post('/api/auth/forgot-password', { email });
   },
 
   // Reset password
   async resetPassword(token: string, newPassword: string): Promise<void> {
-    await apiClient.post('/auth/reset-password', { token, newPassword });
+    await apiClient.post('/api/auth/reset-password', { token, newPassword });
   },
 };

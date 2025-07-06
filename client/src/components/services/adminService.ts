@@ -10,19 +10,19 @@ export const adminService = {
     const response = await apiClient.get<{
       stats: DashboardStats;
       recentSubmissions: Submission[];
-    }>('/admin/dashboard');
+    }>('/api/admin/dashboard');
     return response.data!;
   },
 
   // Get statistics
   async getStats(): Promise<DashboardStats> {
-    const response = await apiClient.get<DashboardStats>('/admin/stats');
+    const response = await apiClient.get<DashboardStats>('/api/admin/stats');
     return response.data!;
   },
 
   // Admin management (Super Admin only)
   async getAllAdmins(): Promise<Admin[]> {
-    const response = await apiClient.get<{ admins: Admin[] }>('/admin/admins');
+    const response = await apiClient.get<{ admins: Admin[] }>('/api/admin/admins');
     return response.data!.admins;
   },
 
@@ -32,16 +32,16 @@ export const adminService = {
     password: string;
     role?: 'admin' | 'super_admin';
   }): Promise<Admin> {
-    const response = await apiClient.post<{ admin: Admin }>('/admin/admins', data);
+    const response = await apiClient.post<{ admin: Admin }>('/api/admin/admins', data);
     return response.data!.admin;
   },
 
   async updateAdmin(id: string, data: Partial<Admin>): Promise<Admin> {
-    const response = await apiClient.put<{ admin: Admin }>(`/admin/admins/${id}`, data);
+    const response = await apiClient.put<{ admin: Admin }>(`/api/admin/admins/${id}`, data);
     return response.data!.admin;
   },
 
   async deactivateAdmin(id: string): Promise<void> {
-    await apiClient.delete(`/admin/admins/${id}`);
+    await apiClient.delete(`/api/admin/admins/${id}`);
   },
 };
