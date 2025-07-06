@@ -6,15 +6,15 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
-import {connectDB} from '../src/configs/database'
-import { cloudinaryConfig } from '../src/configs/cloudinary';
-import { notFound } from '../src/middlewares/notFound';
+import { connectDB } from './configs/database';
+import {cloudinaryConfig} from './configs/cloudinary';
+import { notFound } from './middlewares/notFound';
 import { errorHandler } from './middlewares/errorHandler';
 
-// Import routes
-import authRoutes from '../src/routes/authRoutes';
-import submissionRoutes from "../src/routes/submissionRoutes";
-import adminRoutes from "../src/routes/adminRoutes"
+// routes
+import authRoutes from "./routes/authRoutes";
+import submissionRoutes from "./routes/submissionRoutes";
+import adminRoutes from './routes/adminRoutes';
 
 
 // Load environment variables
