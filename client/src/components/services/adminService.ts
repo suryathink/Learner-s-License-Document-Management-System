@@ -42,6 +42,6 @@ export const adminService = {
   },
 
   async deactivateAdmin(id: string): Promise<void> {
-    await apiClient.delete(`/api/admin/admins/${id}`);
+    await apiClient.delete(`/apij/admin/admins/${id}`);
   },
 };
