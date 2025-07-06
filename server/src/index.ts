@@ -21,7 +21,7 @@ import adminRoutes from './routes/adminRoutes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.LANE_PORT || 5000;
 
 // Security and performance middlewares
 app.use(helmet());
