@@ -63,14 +63,14 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i learners-license-key.pem ${EC2_USER}@${EC2_HOST} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i learners-license-key.pem ${EC2_USER}@${EC2_HOST} << EOF
             echo "🔄 Starting deployment process..."
             
             echo "🔐 Logging into Docker Hub..."
-            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
             echo "📥 Pulling the latest API image..."
-            docker pull $DOCKER_USERNAME/learners-license-api:latest
+            docker pull ${DOCKER_USERNAME}/learners-license-api:latest
 
             echo "🛑 Stopping old container..."
             docker stop learners-license-api || true
@@ -81,7 +81,7 @@ jobs:
 
             echo "🚀 Starting the new container..."
             docker run \
-              --env-file /home/ubuntu/.env.production \
+              --env-file /home/ubuntu/env/.env \
               -d \
               --name learners-license-api \
               --restart unless-stopped \
@@ -89,7 +89,7 @@ jobs:
               --log-driver json-file \
               --log-opt max-size=10m \
               --log-opt max-file=3 \
-              $DOCKER_USERNAME/learners-license-api:latest
+              ${DOCKER_USERNAME}/learners-license-api:latest
 
             echo "⏳ Waiting for container to start..."
             sleep 15
@@ -99,7 +99,7 @@ jobs:
               echo "✅ Deployment successful! API is healthy."
             else
               echo "❌ Health check failed. Checking logs..."
-              docker logs --tail=20 learners-license-api
+              docker logs --tail=20 learners-license-api || echo "No container logs available"
               exit 1
             fi
 
