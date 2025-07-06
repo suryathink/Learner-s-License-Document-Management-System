@@ -23,6 +23,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.LANE_PORT || 5000;
 
+app.use(cors())
+
 // Security and performance middlewares
 app.use(helmet());
 app.use(compression());
@@ -37,7 +39,6 @@ app.use(limiter);
 
 // CORS configuration
 
-app.use(cors())
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
