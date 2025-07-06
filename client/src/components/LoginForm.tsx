@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useForm } from './hooks';
 import { useAuth } from './contexts/AuthContext';
-import { Input, Button, Card, CardHeader, CardBody } from '@/components/ui';
+import { Input, Button, Card, CardBody } from '@/components/ui';
 import { LoginFormData } from './types';
 import { Lock, User, Shield } from 'lucide-react';
 

@@ -93,7 +93,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const adminData = localStorage.getItem('admin');
 
         if (token && adminData) {
-          const admin = JSON.parse(adminData);
+          // const admin = JSON.parse(adminData);
           
           // Verify token is still valid by fetching current admin info
           try {
@@ -162,10 +162,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Update admin data
-  const updateAdmin = (admin: Admin): void => {
-    localStorage.setItem('admin', JSON.stringify(admin));
-    dispatch({ type: 'UPDATE_ADMIN', payload: admin });
-  };
+  // const updateAdmin = (admin: Admin): void => {
+  //   localStorage.setItem('admin', JSON.stringify(admin));
+  //   dispatch({ type: 'UPDATE_ADMIN', payload: admin });
+  // };
 
   const contextValue: AuthContextType = {
     admin: state.admin,

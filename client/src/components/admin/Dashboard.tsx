@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Badge, Button } from '@/components/ui';
 import { adminService } from '../services/adminService';
 import { DashboardStats, Submission } from '../types';
-import { formatDate, getStatusColor } from '../utils';
+import { formatDate } from '../utils';
 import { 
   FileText, 
   Clock, 

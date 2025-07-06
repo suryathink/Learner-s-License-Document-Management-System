@@ -8,7 +8,6 @@ import {formatDate, formatRelativeTime }from "../utils";
 import { Card, CardHeader, CardBody, Input, Select, Button, Badge } from '@/components/ui';
 import { 
   Search, 
-  Filter, 
   Eye, 
   ChevronLeft, 
   ChevronRight,

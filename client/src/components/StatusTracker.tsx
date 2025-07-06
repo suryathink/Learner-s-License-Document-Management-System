@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { submissionService } from './services/submissionService';
 import { Input, Button, Card, CardHeader, CardBody, Badge } from '@/components/ui';
-import { formatDate, getStatusColor } from './utils';
+import { formatDate } from './utils';
 import { Search, CheckCircle, Clock, XCircle, User, Mail, Phone, Calendar } from 'lucide-react';
 import toast from 'react-hot-toast';
 
