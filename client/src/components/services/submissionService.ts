@@ -58,7 +58,7 @@ export const submissionService = {
     reviewedAt?: string;
     applicantName: string;
   }> {
-    const response = await apiClient.get(`/api/submissions/check/${submissionId}`);
+    const response = await apiClient.get(`/submissions/check/${submissionId}`);
     return response.data!;
   },
 
@@ -73,13 +73,13 @@ export const submissionService = {
     });
 
     const response = await apiClient.get<PaginationResponse<Submission>>(
-      `/api/admin/submissions?${params.toString()}`
+      `/admin/submissions?${params.toString()}`
     );
     return response.data!;
   },
 
   async getSubmissionById(id: string): Promise<Submission> {
-    const response = await apiClient.get<{ submission: Submission }>(`/api/admin/submissions/${id}`);
+    const response = await apiClient.get<{ submission: Submission }>(`/admin/submissions/${id}`);
     return response.data!.submission;
   },
 
@@ -88,13 +88,13 @@ export const submissionService = {
     data: StatusUpdateFormData
   ): Promise<Submission> {
     const response = await apiClient.put<{ submission: Submission }>(
-      `/api/admin/submissions/${id}/status`,
+      `/admin/submissions/${id}/status`,
       data
     );
     return response.data!.submission;
   },
 
   async deleteSubmission(id: string): Promise<void> {
-    await apiClient.delete(`/api/admin/submissions/${id}`);
+    await apiClient.delete(`/admin/submissions/${id}`);
   },
 };
